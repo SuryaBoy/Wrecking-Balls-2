@@ -1,0 +1,21 @@
+{
+  "name": "WreckingBalls",
+  "version": "1.1.0",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --open --config webpack.dev.js"
+  },
+  "keywords": [],
+  "author": "Surya Neupane / surya.neu71@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
+  },
+  "dependencies": {
+    "phaser": "^3.60.0"
+  }
+}
