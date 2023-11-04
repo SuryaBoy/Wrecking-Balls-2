@@ -61,6 +61,7 @@ class GameScene extends Phaser.Scene {
 		}
 		this.levelTextBox = null;
 		this.platformForPan = null;
+		this.pointerMovementConstant  = -2;
 	}
 
 	init(data) {
@@ -92,7 +93,7 @@ class GameScene extends Phaser.Scene {
 
 	handlePointerMove(pointer) {
 	  // Update sprite's x position based on mouse movement
-	  this.pan.setVelocityX(-2*(this.pan.x-pointer.x)) ; 
+	  this.pan.setVelocityX(this.pointerMovementConstant*(this.pan.x-pointer.x)) ;
 	}
 
 	create(data) {
@@ -105,10 +106,14 @@ class GameScene extends Phaser.Scene {
 
 		if(this.screenWidth/this.screenHeight > 0.6) {
 			this.gameTextFont = this.gameTextFontDesktop
+			this.ballYVel = this.screenHeight/2
+			this.pointerMovementConstant = -2
 		} 
 		// for mobile phone screen in potrait
 		else {
 			this.gameTextFont = this.gameTextFontMobile
+			this.ballYVel = this.screenHeight/3
+			this.pointerMovementConstant = -4
 		}
 		// setting the font size after getting screen dimensions
 		this.gameTextStyle.font = this.gameTextFont
@@ -259,7 +264,7 @@ class GameScene extends Phaser.Scene {
 
 	    ball.allowGravity = false;
 	    ball.body.onWorldBounds = true;
-	    ball.setVelocity(100,-this.screenHeight/2)
+	    ball.setVelocity(100,-this.ballYVel)
 
 		this.physics.world.enable(ball)
 		this.sound.play('powerUpSound')
@@ -433,7 +438,7 @@ class GameScene extends Phaser.Scene {
 		const bricksForLevel = this.createBricksForLevel(this.levels[this.currentLevel]);
 
 		// initialize the velocity of ball based on the level
-		this.ballYVel = this.levels[this.currentLevel].velocityIncrement + (this.screenHeight/2);
+		this.ballYVel = this.ballYVel + this.levels[this.currentLevel].velocityIncrement;
 		// Other level-specific setup
 
 		// Add bricksForLevel to your scene as needed
