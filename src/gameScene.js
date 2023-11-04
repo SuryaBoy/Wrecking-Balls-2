@@ -113,7 +113,7 @@ class GameScene extends Phaser.Scene {
 		else {
 			this.gameTextFont = this.gameTextFontMobile
 			this.ballYVel = this.screenHeight/3
-			this.pointerMovementConstant = -4
+			this.pointerMovementConstant = -6
 		}
 		// setting the font size after getting screen dimensions
 		this.gameTextStyle.font = this.gameTextFont
