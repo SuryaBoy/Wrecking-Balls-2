@@ -17,6 +17,21 @@ class SplashScene extends Phaser.Scene {
 	}
 
 	preload() {
+        var progress = this.add.graphics();
+        this.load.setPath('sprites');
+        this.load.on('progress', function (value) {
+
+            progress.clear();
+            progress.fillStyle(0xffffff, 1);
+            progress.fillRect(0, window.screen.height/2, window.screen.width * value, 60);
+
+        });
+
+        this.load.on('complete', function () {
+
+            progress.destroy();
+
+        });
 		console.log("SplashScene");
 		// this.load.image('splashSceneBackground', './assets/splashSceneImage.png');
 	}
